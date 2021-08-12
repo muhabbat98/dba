@@ -3,7 +3,7 @@ const { connectionString} = require('../settings')
 
 const pool = new Pool({connectionString})
 
-const model  = async (SQL, ...params)=>{
+const modelAll  = async (SQL, ...params)=>{
     const client  = await pool.connect()
     try{
         const {rows} = await client.query(SQL, params.length ? params :null)
@@ -14,8 +14,20 @@ const model  = async (SQL, ...params)=>{
         client.release()
     }
 }
+const modelSingle  = async (SQL, ...params)=>{
+    const client  = await pool.connect()
+    try{
+        const {rows:[single]} = await client.query(SQL, params.length ? params :null)
+        return single
+        
+    }
+    finally{
+        client.release()
+    }
+}
 
 module.exports = {
-    model
+    modelAll,
+    modelSingle
 }
 
