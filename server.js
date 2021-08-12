@@ -8,6 +8,8 @@ const {PORT } = require("./settings")
 
 const user = require("./modules/users")
 // const journal = require("./modules/journal")
+const foriegn = require("./modules/foriegn")
+
 const bookController = require('./modules/files/bookController.js')
 const coverController = require('./modules/files/coverController.js')
 
@@ -25,6 +27,7 @@ const upload = multer({ storage: storage })
 
 const modules = [
   user,
+  foriegn
   // journal
 ]
 const app = express();
