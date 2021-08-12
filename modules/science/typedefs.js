@@ -5,6 +5,18 @@ const typeDefs = gql`
   extend type Query {
     siences: [Science]
   }
+  type Cover{
+	  coverId:Int
+	  filename:String
+	  mimetype:String
+	  size:Int
+  }
+  type File{
+	  fileId:Int
+	  filename:String
+	  mimetype:String
+	  size:Int
+  }
   type Science {
     id: Int
     file: File

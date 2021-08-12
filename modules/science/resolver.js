@@ -7,7 +7,12 @@ const resolvers = {
 	Query: {
 		sciences:async() => scienceModel(),
 	},
- 
+	Cover:{
+		coverId:global=>global.cover_id
+	},
+	File:{
+		fileId:global=>global.file_id
+	},
 	Science: {
 		id: (global) => global.science_literature_id,
 		cover:(global)=>cover(global.cover_id),
