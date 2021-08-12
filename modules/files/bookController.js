@@ -1,6 +1,6 @@
 const {fileUpload} = require('./queries')
 
-module.exports= function (req, res){
+module.exports= async function (req, res){
     const file = req.file
     
     if(file){
