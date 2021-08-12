@@ -2,6 +2,8 @@ const express = require("express")
 const {  ApolloServer} = require("apollo-server-express")
 const multer  = require('multer')
 const path = require('path')
+var cors = require('cors')
+
 const {PORT } = require("./settings")
 
 const user = require("./modules/users")
@@ -26,7 +28,7 @@ const modules = [
   // journal
 ]
 const app = express();
-
+app.use(cors())
 app.post('/book', upload.single('book'),bookController);
 app.post('/cover',upload.single('cover'), coverController);
 
