@@ -23,8 +23,7 @@ create table files (
     file_id serial not null primary key,
     filename varchar(128) not null,
     mimetype varchar(128),
-    size varchar(64),
-    cover_id int references covers(cover_id)
+    size varchar(64)
 );
 
 -- 04 Science
@@ -40,6 +39,7 @@ create table science_literature (
     science_literature_id serial not null primary key,
     degree smallint not null,
     file_id int references files(file_id),
+    cover_id int references covers(cover_id),
     name varchar(128) not null,
     author varchar(128),
     keywords varchar (256),
