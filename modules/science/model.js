@@ -1,37 +1,47 @@
-const { model, modelSingle } = require("../../connection/pool");
+const { modelAll, modelSingle } = require("../../connection/pool");
 
 
 // SELECT 
-const JOURNALS = ` SELECT * FROM journals_literature l LEFT JOIN covers c ON c.cover_id= l.cover_id LEFT JOIN files f ON f.file_id=l.file_id DESC;`;
+const SCIENCES = ` SELECT * FROM science_literature l LEFT JOIN covers c ON c.cover_id= l.cover_id LEFT JOIN files f ON f.file_id=l.file_id DESC;`;
+
+const FILE     = `SELECT * FROM files WHERE file_id=$1`
+const COVER     = `SELECT * FROM covers WHERE cover_id=$1`
 
 
 
 
 // INSERT 
-const ADD_JOURNAL = `INSERT INTO  journals_literature(
+const ADD_SIENCE = `INSERT INTO  journals_literature(
 					file_id,
 					cover_id,
 					name,
 					keywords,
 					resource_type,
 					language,
-					serial_number,
-					year,
-					date
+					date,
+					author,
+					degree,
+					description
 				) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) 
-				RETURNING *`;
+				RETURNING name`;
 
 
 // INSERT FUNC 
-const createJournalModel = (  fileId,coverId, name,  keywords,  resourceType,  language, serialNumber, year, date) =>  model(    ADD_JOURNAL,    fileId,coverId, name,  keywords,  resourceType,  language, serialNumber, year, date     );
+const createScienceModel = (  fileId,coverId, name,  keywords,  resourceType,  language, date, author, degree, description) 		=>  		modelSingle( ADD_SCIENCE, fileId,coverId, name,  keywords, resourceType,  language,date, author, degree, description );
 
 
 // SELECT FUNC 
 
-const journals =    () 			=>        	model(JOURNALS)
+const scienceModel =    	() 																										=>        	modelAll(SCIENCES)
+const file     =			(fileId)                                                                                                =>          modelSingle(FILE, fileId)
+const cover     =			(fileId)                                                                                                =>          modelSingle(COVER, fileId)
 
 
 module.exports = {
-  journals,
-  createJournalModel
+  scienceModel,
+  createScienceModel,
+  cover, file
 };
+
+   
+   
