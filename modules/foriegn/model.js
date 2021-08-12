@@ -2,7 +2,7 @@ const { modelSingle, modelAll } = require("../../connection/pool");
 
 
 // SELECT 
-const FORIEGN_BOOKS = ` SELECT * FROM foriegn_literature l LEFT JOIN covers c ON c.cover_id= l.cover_id LEFT JOIN files f ON f.file_id=l.file_id DESC;`;
+const FORIEGN_BOOKS = ` SELECT * FROM foriegn_literature l LEFT JOIN covers c ON c.cover_id= l.cover_id LEFT JOIN files f ON f.file_id=l.file_id;`;
 
 
 
