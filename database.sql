@@ -57,6 +57,7 @@ create table science_literature (
 create table foriegn_literature (
     foriegn_literature_id serial not null primary key,
     file_id int references files(file_id),
+    cover_id int references covers(cover_id),
     name varchar(128) not null,
     author varchar(128),
     keywords varchar (256),
@@ -75,6 +76,7 @@ create table foriegn_literature (
 create table journals_literature (
     foriegn_literature_id serial not null primary key,
     file_id int references files(file_id),
+    cover_id int references covers(cover_id),
     name varchar(128) not null,
     keywords varchar (256),
     resource_type int,
