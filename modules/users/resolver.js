@@ -25,7 +25,9 @@ const {sign, verify} = require('../../jwt')
 				return{
 					status:400,
 					message:err.message,
-					token:null
+					token:null,
+					data:row
+					
 				}
 			}
 		},
@@ -38,7 +40,8 @@ const {sign, verify} = require('../../jwt')
 					return {
 						status:200,
 						message:`${row.username} is our user`,
-						token
+						token,
+						data:row
 					}
 				}
 				else{

@@ -1,4 +1,4 @@
 
-export default function CoverController (req, res){
+module.exports= function (req, res){
     console.log(res.files);
 }

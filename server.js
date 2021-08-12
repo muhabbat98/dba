@@ -6,8 +6,8 @@ const {PORT } = require("./settings")
 
 const user = require("./modules/users")
 // const journal = require("./modules/journal")
-// const bookController = require('./modules/files/bookController.js')
-// const coverController = require('./modules/files/coverController.js')
+const bookController = require('./modules/files/bookController.js')
+const coverController = require('./modules/files/coverController.js')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -27,8 +27,8 @@ const modules = [
 ]
 const app = express();
 
-// app.post('/book', upload.single('book'),bookController);
-// app.post('/cover',upload.single('cover'), coverController);
+app.post('/book', upload.single('book'),bookController);
+app.post('/cover',upload.single('cover'), coverController);
 
 const server = new ApolloServer({modules});
 server.applyMiddleware({ app });
