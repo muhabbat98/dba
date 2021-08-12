@@ -1,31 +1,31 @@
-const { journalsModel, createJournalModel} = require("./model");
-// const { cover, file } = require('../foreign/model')
-const {  verification, decode } = require("../../jwt");
-const {verify} = require('jsonwebtoken')
-// Resolver map
+const { foriegnBooksModel, createForiegnModel} = require("./model");
+const { cover, file } = require('../science/model')
+const {  verify } = require("../../jwt");
+
 const resolvers = {
   Query: {
-    journals:async() => journalsModel(),
+    foriegnBooks:async() => foriegnBooksModel(),
   },
- 
-  Journal: {
+  
+  ForiegnBook: {
     id: (global) => global.journals_literature_id,
     cover:(global)=>cover(global.cover_id),
     file: (global) => file(global.file_id),
     resourceType: (global) => global.resource_type,
-    serialNumber:(global)=>global.serial_number
+    resourseHolder:(global)=>global.right_holder
   },
 
 
   Mutation: {
-    createJournal: async ( _, { input: { fileId,coverId, name,  keywords,  resourceType,  language, serialNumber, year, date } }, {token} ) => 
+    createForiegnBook: async ( _, { input: { fileId,coverId, name,  keywords,  resourceType,  language,  date, author, description, resourseHolder } }, {token} ) => 
     {	
      
-      const admin = await verification(token)
+      const admin = await verify(token)
       
       try{
         if(admin.isAdmin){
-          const [row] = await createJournalModel(   fileId,coverId, name,  keywords,  resourceType,  language, serialNumber, year, date );
+
+          const row = await createForiegnModel( fileId,coverId, name,  keywords,  resourceType,  language,  date, author, description, resourseHolder );
           
           return {
             status:200,
