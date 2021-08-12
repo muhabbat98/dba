@@ -7,11 +7,8 @@ const SCIENCES = ` SELECT * FROM science_literature l LEFT JOIN covers c ON c.co
 const FILE     = `SELECT * FROM files WHERE file_id=$1`
 const COVER     = `SELECT * FROM covers WHERE cover_id=$1`
 
-
-
-
 // INSERT 
-const ADD_SIENCE = `INSERT INTO  journals_literature(
+const ADD_SCIENCE = `INSERT INTO  science_literature(
 					file_id,
 					cover_id,
 					name,
@@ -22,7 +19,7 @@ const ADD_SIENCE = `INSERT INTO  journals_literature(
 					author,
 					degree,
 					description
-				) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+				) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9,$10) 
 				RETURNING name`;
 
 

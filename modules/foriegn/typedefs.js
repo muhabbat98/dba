@@ -3,11 +3,10 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
 
   extend type Query {
-    journals: [Journal]
+    foriegnBooks: [ForiegnBook]
   }
 
-
-  type Journal {
+  type ForiegnBook {
     id: Int
     file: File
     cover:Cover
@@ -15,23 +14,25 @@ const typeDefs = gql`
     keywords: String
     resourceType: Int
     language: String
-    serialNumber: Int!
-    year: Int!
     date: String
+	author:String
+	description:String
+	resourseHolder:String
   }
-  input JournalInput {
+  input BookInput {
     fileId: Int
     coverId:Int
     name: String!
     keywords: String
     resourceType: Int
     language: String
-    serialNumber: Int
-    year: Int
     date: String
+	author:String
+	description:String
+	resourseHolder:String
   }
   extend type Mutation {
-    createJournal(input: JournalInput): BookStatus
+    createForiegnBook(input: BookInput): BookStatus
   }
 `;
 module.exports = {
