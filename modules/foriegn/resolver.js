@@ -1,7 +1,7 @@
 const { journalsModel, createJournalModel} = require("./model");
 // const { cover, file } = require('../foreign/model')
-const {  verification} = require("../../jwt");
-
+const {  verification, decode } = require("../../jwt");
+const {verify} = require('jsonwebtoken')
 // Resolver map
 const resolvers = {
   Query: {
@@ -10,8 +10,8 @@ const resolvers = {
  
   Journal: {
     id: (global) => global.journals_literature_id,
-    // cover:(global)=>cover(global.cover_id),
-    // file: (global) => file(global.file_id),
+    cover:(global)=>cover(global.cover_id),
+    file: (global) => file(global.file_id),
     resourceType: (global) => global.resource_type,
     serialNumber:(global)=>global.serial_number
   },

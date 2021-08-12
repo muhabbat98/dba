@@ -3,13 +3,13 @@ create database dba;
 -- 01 users
 create table users (
     user_id serial not null primary key,
-    username varchar(64) not null,
+    username varchar(64) unique not null,
     password varchar(128) not null,
     full_name varchar(128),
     is_admin boolean default false
 );
-INSERT INTO users(username, password) VALUES('bmp', crypt('123', gen_salt('bf')));
-SELECT username, is_admin, user_id FROM users WHERE username=$1, password=crypt($2, password), is_admin=$3;
+INSERT INTO users(username, password, is_admin) VALUES('bmp98', crypt('123', gen_salt('bf')), true);
+-- SELECT username, is_admin, user_id FROM users WHERE username=$1, password=crypt($2, password), is_admin=$3;
 -- 02 covers
 create table covers (
     cover_id serial not null primary key,
