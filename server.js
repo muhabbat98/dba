@@ -9,6 +9,8 @@ const {PORT } = require("./settings")
 const user = require("./modules/users")
 // const journal = require("./modules/journal")
 const foriegn = require("./modules/foriegn")
+const science = require("./modules/science")
+
 
 const bookController = require('./modules/files/bookController.js')
 const coverController = require('./modules/files/coverController.js')
@@ -27,7 +29,8 @@ const upload = multer({ storage: storage })
 
 const modules = [
   user,
-  foriegn
+  foriegn,
+  science
   // journal
 ]
 const app = express();
@@ -35,7 +38,7 @@ app.use(cors())
 app.post('/book', upload.single('book'),bookController);
 app.post('/cover',upload.single('cover'), coverController);
 
-const server = new ApolloServer({modules});
+const server = new ApolloServer({modules,  context: ({ req }) => ({ token : req.headers.token || ''})});
 server.applyMiddleware({ app });
 
 app.listen({ port: PORT }, () =>
