@@ -6,7 +6,7 @@ const typeDefs = gql`
         users:[User]
     }
     type User{
-        user_id:Int
+        userId:Int
         username:String!
         password:String!
         fullName:String
@@ -22,6 +22,7 @@ const typeDefs = gql`
     type Mutation{
         isUser(useInfo:InputUser):Object
         addUser(useInfo:InputUser):Object
+        deleteUser(userId:Int):String
     }
 `;
 module.exports={
