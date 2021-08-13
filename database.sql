@@ -74,7 +74,7 @@ create table foriegn_literature (
 -- 2 physical,
 -- 3 digital and physical
 create table journals_literature (
-    foriegn_literature_id serial not null primary key,
+    journal_literature_id serial not null primary key,
     file_id int references files(file_id),
     cover_id int references covers(cover_id),
     name varchar(128) not null,
