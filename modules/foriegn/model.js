@@ -23,12 +23,12 @@ const ADD_FORIEGN_BOOK = `INSERT INTO  foriegn_literature(
 
 
 // INSERT FUNC 
-const createForiegnModel = (fileId,coverId, name,  keywords,  resourceType,  language,  date, author, description, resourseHolder) =>  modelSingle(ADD_FORIEGN_BOOK, fileId,coverId, name,  keywords,  resourceType,  language,  date, author, description, resourseHolder);
+const createForiegnModel = (fileId,coverId, name,  keywords,  resourceType,  language,  date, author, description, resourseHolder) =>  			modelSingle(ADD_FORIEGN_BOOK, fileId,coverId, name,  keywords,  resourceType,  language,  date, author, description, resourseHolder);
 
 
 // SELECT FUNC 
 
-const foriegnBooksModel =    () 			=>        	modelAll(FORIEGN_BOOKS)
+const foriegnBooksModel =    () 																									=>        	modelAll(FORIEGN_BOOKS)
 
 
 module.exports = {
