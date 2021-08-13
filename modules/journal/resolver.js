@@ -28,11 +28,7 @@ const resolvers = {
 		try{
 			if(admin.isAdmin){
 				const row = await createJournalType(coverId, name,  keywords, resourceType, language );			
-				return {
-					status:200,
-					message:"successfully created "+ row.name,
-					data:row.general_id
-				}
+				return row
 			}
 			else{
 				throw new Error("you don't have a privlige to create book")

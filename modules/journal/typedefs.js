@@ -36,7 +36,7 @@ const typeDefs = gql`
     language: String
   }
   extend type Mutation {
-    createJournalType(input: TypeInput): BookStatus
+    createJournalType(input: TypeInput): GeneralJournal
     createJournal(input: JournalInput): BookStatus
   }
 `;
