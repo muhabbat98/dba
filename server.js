@@ -35,6 +35,7 @@ const modules = [
 ]
 const app = express();
 app.use(cors())
+app.use('/static', express.static('files'));
 app.post('/book', upload.single('book'),bookController);
 app.post('/cover',upload.single('cover'), coverController);
 
