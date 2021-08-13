@@ -7,7 +7,7 @@ var cors = require('cors')
 const {PORT } = require("./settings")
 
 const user = require("./modules/users")
-// const journal = require("./modules/journal")
+const journal = require("./modules/journal")
 const foriegn = require("./modules/foriegn")
 const science = require("./modules/science")
 
@@ -30,8 +30,8 @@ const upload = multer({ storage: storage })
 const modules = [
   user,
   foriegn,
-  science
-  // journal
+  science,
+  journal
 ]
 const app = express();
 app.use(cors())
