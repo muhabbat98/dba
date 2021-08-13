@@ -1,37 +1,43 @@
-const { model, modelSingle } = require("../../connection/pool");
+const { modelAll, modelSingle } = require("../../connection/pool");
 
 
 // SELECT 
-const JOURNALS = ` SELECT * FROM journals_literature l LEFT JOIN covers c ON c.cover_id= l.cover_id LEFT JOIN files f ON f.file_id=l.file_id DESC;`;
+const JOURNALS = `SELECT * FROM journals_literature WHERE general_id=$1`;
 
-
+const GENERAL_JOURNAL = `select * from general_journals l left join covers c ON l.cover_id=c.cover_id`;
 
 
 // INSERT 
 const ADD_JOURNAL = `INSERT INTO  journals_literature(
 					file_id,
+					serial_number,
+					year,
+					date,
+					general_id
+				) VALUES($1, $2, $3, $4, $5) 
+				RETURNING *`;
+
+const ADD_JOURNAL_TYPE = `INSERT INTO  general_journals(
 					cover_id,
 					name,
 					keywords,
 					resource_type,
-					language,
-					serial_number,
-					year,
-					date
-				) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) 
-				RETURNING *`;
-
-
+					language
+				) VALUES($1, $2, $3, $4, $5) 
+				RETURNING name, general_id`;
 // INSERT FUNC 
-const createJournalModel = (  fileId,coverId, name,  keywords,  resourceType,  language, serialNumber, year, date) =>  model(    ADD_JOURNAL,    fileId,coverId, name,  keywords,  resourceType,  language, serialNumber, year, date     );
+const createJournalModel = (fileId, serialNumber, year, date, generalId) 						=> 			modelSingle( ADD_JOURNAL, fileId, serialNumber, year, date, generalId);
 
+const createJournalType = (coverId, name, keywords, resourceType, language) 		=> 			modelSingle( ADD_JOURNAL_TYPE, coverId, name, keywords,  resourceType, language);
 
 // SELECT FUNC 
 
-const journals =    () 			=>        	model(JOURNALS)
-
+const journalsModel =    		(id) 																				=>        	modelAll(JOURNALS, id)
+const generalJournalModel=      ()																					=>			modelAll(GENERAL_JOURNAL)
 
 module.exports = {
-  journals,
-  createJournalModel
+	journalsModel,
+  	createJournalModel,
+	generalJournalModel,
+	createJournalType
 };

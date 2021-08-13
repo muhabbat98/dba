@@ -73,14 +73,19 @@ create table foriegn_literature (
 -- 1 digital,
 -- 2 physical,
 -- 3 digital and physical
-create table journals_literature (
-    journal_literature_id serial not null primary key,
-    file_id int references files(file_id),
+create table general_journals(
+    general_id serial not null primary key,
     cover_id int references covers(cover_id),
     name varchar(128) not null,
     keywords varchar (256),
     resource_type int,
-    language varchar(32),
+    language varchar(32)
+);
+
+create table journals_literature (
+    journal_literature_id serial not null primary key,
+    general_id int not null references general_journals(general_id),
+    file_id int references files(file_id),
     serial_number int not null,
     year int not null,
     date varchar (32)
