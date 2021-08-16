@@ -76,7 +76,7 @@ create table foriegn_literature (
 create table general_journals(
     general_id serial not null primary key,
     cover_id int references covers(cover_id),
-    name varchar(128) not null,
+    name varchar(128) unique not null,
     keywords varchar (256),
     resource_type int,
     language varchar(32)
@@ -89,4 +89,9 @@ create table journals_literature (
     serial_number int not null,
     year int not null,
     date varchar (32)
+);
+
+create table most_downloads(
+    download_id serial not null primary key,
+    source_id int not null references foriegn_literature(foriegn_literature_id)
 );

@@ -6,7 +6,11 @@ const {  verify} = require("../../jwt");
 const resolvers = {
 	Query: {
 		journals:() => generalJournalModel(),
-		exactJournals:(_, {id})=>journalsModel(id)
+		exactJournals:async(_, {id})=>{
+			const row  = await journalsModel(id)
+			console.log(row)
+			return row
+		}
 	},
 	GeneralJournal:{
 		id:global=>global.general_id,

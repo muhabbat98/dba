@@ -8,7 +8,7 @@ const resolvers = {
   },
   
   ForiegnBook: {
-    id: (global) => global.journals_literature_id,
+    id: (global) => global.foriegn_literature_id,
     cover:(global)=>cover(global.cover_id),
     file: (global) => file(global.file_id),
     resourceType: (global) => global.resource_type,

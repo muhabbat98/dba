@@ -2,7 +2,7 @@ const { modelAll, modelSingle } = require("../../connection/pool");
 
 
 // SELECT 
-const JOURNALS = `SELECT * FROM journals_literature WHERE general_id=$1`;
+const JOURNALS = `SELECT * FROM journals_literature l left join files c ON l.file_id=c.file_id WHERE general_id=$1 GROUP BY l.journal_literature_id, c.file_id, l.year Order by l.year DESC;`;
 
 const GENERAL_JOURNAL = `select * from general_journals l left join covers c ON l.cover_id=c.cover_id`;
 
@@ -26,9 +26,9 @@ const ADD_JOURNAL_TYPE = `INSERT INTO  general_journals(
 				) VALUES($1, $2, $3, $4, $5) 
 				RETURNING name, general_id`;
 // INSERT FUNC 
-const createJournalModel = (fileId, serialNumber, year, date, generalId) 						=> 			modelSingle( ADD_JOURNAL, fileId, serialNumber, year, date, generalId);
+const createJournalModel = (fileId, serialNumber, year, date, generalId) 											=> 			modelSingle( ADD_JOURNAL, fileId, serialNumber, year, date, generalId);
 
-const createJournalType = (coverId, name, keywords, resourceType, language) 		=> 			modelSingle( ADD_JOURNAL_TYPE, coverId, name, keywords,  resourceType, language);
+const createJournalType = (coverId, name, keywords, resourceType, language) 										=> 			modelSingle( ADD_JOURNAL_TYPE, coverId, name, keywords,  resourceType, language);
 
 // SELECT FUNC 
 

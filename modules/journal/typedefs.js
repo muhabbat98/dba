@@ -4,7 +4,7 @@ const typeDefs = gql`
 
   extend type Query {
     journals: [GeneralJournal],
-    exactJournals(id:Int):Journal
+    exactJournals(id:Int):[Journal]
   }
   type GeneralJournal{
     id:Int
