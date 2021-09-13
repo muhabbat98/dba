@@ -1,4 +1,4 @@
-const{ isUser, addUser, allUsers, deleteUser}  = require('./model')
+const{ isUser, addingUser, allUsers, deleteUser}  = require('./model')
 const {sign, verify} = require('../../jwt')
   
   const resolvers = {
@@ -11,14 +11,16 @@ const {sign, verify} = require('../../jwt')
 		isAdmin:global=>global.is_admin
 	},
     Mutation :{
-		addUser: async(_, {useInfo:{username, password, fullName, isAdmin}})=>{
+		addUser: async(_, {useInfo:{username, password, fullName, isAdmin}}, {token})=>{
 			try{
-				const row = await addUser(username, password, fullName, isAdmin)				
-				const token = sign({userId:row.user_id, isAdmin:row.is_admin})
+				console.log(username, password, fullName, isAdmin)
+				const row = await addingUser(username, password, fullName, isAdmin)	
+				console.log(row)			
+				const newtoken = sign({userId:row.user_id, isAdmin:row.is_admin})
 				return {
 					status:200,
 					message:"successfully created",
-					token
+					token:newtoken
 				}
 			}
 			catch(err){
