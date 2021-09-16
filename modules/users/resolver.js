@@ -3,7 +3,8 @@ const {sign, verify} = require('../../jwt')
   
   const resolvers = {
 	Query:{
-		users:()=> allUsers()
+		users:()=> allUsers(),
+		user:(_,{userId})=> allUsers(userId)
 	},
 	User:{
 		userId:global=>global.user_id,

@@ -3,7 +3,8 @@ const { gql } = require("apollo-server-express")
 const typeDefs = gql`
     scalar Object
     type Query{
-        users:[User]
+        users(userId:Int):[User],
+        user(userId:Int):User
     }
     type User{
         userId:Int
