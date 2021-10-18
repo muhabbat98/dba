@@ -2,7 +2,7 @@ const { modelAll, modelSingle } = require("../../connection/pool");
 
 
 // SELECT 
-const SCIENCES = ` SELECT * FROM science_literature l LEFT JOIN covers c ON c.cover_id= l.cover_id LEFT JOIN files f ON f.file_id=l.file_id ;`;
+const SCIENCES = ` SELECT * FROM science_literature l LEFT JOIN covers c ON c.cover_id= l.cover_id LEFT JOIN files f ON f.file_id=l.file_id WHERE l.degree=$1 ;`;
 
 const FILE     = `SELECT * FROM files WHERE file_id=$1`
 const COVER     = `SELECT * FROM covers WHERE cover_id=$1`
@@ -29,7 +29,7 @@ const createScienceModel = (  fileId,coverId, name,  keywords,  resourceType,  l
 
 // SELECT FUNC 
 
-const scienceModel =    	() 																										=>        	modelAll(SCIENCES)
+const scienceModel =    	(degree) 																								=>        	modelAll(SCIENCES, degree)
 const file     =			(fileId)                                                                                                =>          modelSingle(FILE, fileId)
 const cover     =			(fileId)                                                                                                =>          modelSingle(COVER, fileId)
 

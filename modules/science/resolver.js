@@ -5,7 +5,7 @@ const {  verify } = require("../../jwt");
 // Resolver map
 const resolvers = {
 	Query: {
-		sciences:async() => scienceModel(),
+		sciences:async(_,{degree}) => scienceModel(degree),
 	},
 	Cover:{
 		coverId:global=>global.cover_id
@@ -19,7 +19,6 @@ const resolvers = {
 		file: (global) => file(global.file_id),
 		resourceType: (global) => global.resource_type
 	},
-
 
 	Mutation: {
 		createScience: async ( _, { input: {fileId,coverId, name,  keywords,  resourceType,  language, date, author, degree, description } }, {token} ) => 

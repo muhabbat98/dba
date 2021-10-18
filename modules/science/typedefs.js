@@ -3,7 +3,7 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   scalar BookStatus
   extend type Query {
-    sciences: [Science]
+    sciences(degree:Int): [Science]
   }
   type Cover{
 	  coverId:Int
