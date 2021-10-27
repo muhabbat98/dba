@@ -95,3 +95,16 @@ create table most_downloads(
     download_id serial not null primary key,
     source_id int not null references foriegn_literature(foriegn_literature_id)
 );
+
+create table departments(
+    department_id serial not null primary key,
+    department_name varchar(64) not null, unique
+);
+create table e_books (
+    e_book_id serial not null primary key,
+    cover_id int references covers(cover_id),
+    file_id int references files(file_id),
+    department_id int references departments(department_id),
+    name varchar(64),
+    author varchar(64)
+);

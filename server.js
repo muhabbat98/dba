@@ -11,7 +11,7 @@ const journal = require("./modules/journal")
 const foriegn = require("./modules/foriegn")
 const science = require("./modules/science")
 const statistics = require("./modules/statistics")
-
+const ebooks = require("./modules/ebook")
 
 const bookController = require('./modules/files/bookController.js')
 const coverController = require('./modules/files/coverController.js')
@@ -33,7 +33,8 @@ const modules = [
   foriegn,
   science,
   journal,
-  statistics
+  statistics,
+  ebooks
 ]
 const app = express();
 app.use(cors())
