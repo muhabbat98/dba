@@ -4,7 +4,8 @@ const typeDefs = gql`
 
   extend type Query {
     departments:[Department]
-    eBooks:[Ebook]
+    eBooks(departmentId:Int):[Ebook]
+    eBook(id:Int):Ebook
   }
   type Department{
     id:Int
@@ -15,7 +16,7 @@ const typeDefs = gql`
     id: Int
     file: File
     cover:Cover
-    department:String
+    department:Department
     name:String,
     author:String
   }

@@ -1,4 +1,4 @@
-const { journalsModel, createDepartmentModel, createJournalType, departmentModel, eBookModel, createEbookModel} = require("./model");
+const {  createDepartmentModel,  departmentModel, eBookModel, createEbookModel, eBooksModel} = require("./model");
 const { cover, file } = require('../science/model')
 const {  verify} = require("../../jwt");
 
@@ -6,26 +6,17 @@ const {  verify} = require("../../jwt");
 const resolvers = {
 	Query: {
 		departments:() => departmentModel(),
-		eBooks:async(_, {id})=>{
-			const row  = await eBookModel(id)
-			console.log(row)
-			return row
-		}
+		eBooks: async(_, { departmentId }) =>  eBooksModel(departmentId),
+		eBook: (_, { id }) => eBookModel(id)
 	},
 	Ebook:{
-		id:global=>{
-			console.log(global)
-			return global.e_book_id
-		},
-		department:async(global)=>{
-			console.log("department")
-			const row  = await eBookModel(global.department_id)
-			console.log(row)
-			return row.department_name
-		}
+		id:global=> global.e_book_id,
+		department: (global) => departmentModel(global.department_id),
+		file: global => file(global.file_id),
+		cover:global=>cover(global.cover_id)
 	},
 	Department: {
-		id: (global) =>  global.department_id,
+		id: global =>  global.department_id,
 		name:global=>global.department_name
 	},
 
