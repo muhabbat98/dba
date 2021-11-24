@@ -98,7 +98,7 @@ create table most_downloads(
 
 create table departments(
     department_id serial not null primary key,
-    department_name varchar(64) not null, unique
+    department_name varchar(64) not null unique
 );
 create table e_books (
     e_book_id serial not null primary key,

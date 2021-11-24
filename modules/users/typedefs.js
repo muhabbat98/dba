@@ -3,13 +3,13 @@ const { gql } = require("apollo-server-express")
 const typeDefs = gql`
     scalar Object
     type Query{
-        users(userId:Int):[User],
+        users:[User],
         user(userId:Int):User
     }
     type User{
         userId:Int
-        username:String!
-        password:String!
+        username:String
+        password:String
         fullName:String
         isAdmin:Boolean
     }
