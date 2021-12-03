@@ -22,6 +22,7 @@ const ADD_EBOOK = 	`INSERT INTO  e_books(
 						author
 					) VALUES($1, $2, $3, $4, $5) 
 						RETURNING *`;
+						// select * from e_books e Left join covers c on c.cover_id=e.cover_id  left join files f on f.file_id=e.file_id Left join departments d on d.department_id=e.department_id WHERE e.department_id=2;
 // INSERT FUNC 
 const createDepartmentModel = (name) 																				=> 			modelSingle( ADD_DEPARTMENT, name);
 

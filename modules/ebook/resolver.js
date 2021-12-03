@@ -50,7 +50,7 @@ const resolvers = {
 			try{
 				if(admin.isAdmin){
 					const row = await createEbookModel(fileId, coverId, departmentId, name, author );			
-						
+						console.log("create book ", row)
 					return row
 				}
 				else{
