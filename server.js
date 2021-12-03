@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
     } catch (err) {
       console.error(err)
     }
-      cb(null, path.join(__dirname, '/files'))
+      cb(null,  '/files')
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now()
