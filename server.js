@@ -22,12 +22,11 @@ const storage = multer.diskStorage({
     try {
       if (!fs.existsSync('/files')) {
         fs.mkdirSync( '/files' )
-        cb(null, path.join(__dirname, '/files'))
       }
     } catch (err) {
       console.error(err)
     }
-    
+      cb(null, path.join(__dirname, '/files'))
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now()
