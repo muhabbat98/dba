@@ -18,7 +18,7 @@ const coverController = require('./modules/files/coverController.js')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '/files'))
+    cb(null, './files')
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now()
