@@ -13,11 +13,13 @@ const resolvers = {
 		id:global=> global.e_book_id,
 		department: (global) => departmentModel(global.department_id),
 		file: global => file(global.file_id),
-		cover:global=>cover(global.cover_id)
+		cover:global=>cover(global.cover_id),
+		
 	},
 	Department: {
 		id: global =>  global.department_id,
-		name:global=>global.department_name
+		name: global => global.department_name,
+		eBook: (_, { id }) => eBookModel(id)
 	},
 
 

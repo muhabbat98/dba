@@ -10,6 +10,7 @@ const typeDefs = gql`
   type Department{
     id:Int
     name: String
+    eBooks(departmentId:Int):[Ebook]
   }
 
   type Ebook{
