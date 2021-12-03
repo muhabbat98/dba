@@ -2,8 +2,8 @@ const express = require("express")
 const {  ApolloServer} = require("apollo-server-express")
 const multer  = require('multer')
 const path = require('path')
-var cors = require('cors')
-
+const cors = require('cors')
+const fs = require('fs')
 const {PORT } = require("./settings")
 
 const user = require("./modules/users")
@@ -17,8 +17,17 @@ const bookController = require('./modules/files/bookController.js')
 const coverController = require('./modules/files/coverController.js')
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '/files'))
+  destination: function ( req, file, cb )
+  {
+    try {
+      if (!fs.existsSync('/files')) {
+        fs.mkdirSync( '/files' )
+        cb(null, path.join(__dirname, '/files'))
+      }
+    } catch (err) {
+      console.error(err)
+    }
+    
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now()
