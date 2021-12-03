@@ -30,7 +30,7 @@ const createEbookModel = (fileId, coverId, departmentId, name, author) 									
 
 // SELECT FUNC 
 
-const eBookModel = async(id) 																						=>			modelSingle(EBOOK, id)
+const eBookModel = (id) 																						=>			modelSingle(EBOOK, id)
 const departmentModel = (id) 																						=>			id? modelSingle(DEPARTMENT,id) :modelAll(DEPARTMENTS)
 
 const eBooksModel = (id) 																							=>			modelAll(EBOOKS,id)
