@@ -5,7 +5,8 @@ const {  verify} = require("../../jwt");
 // Resolver map
 const resolvers = {
 	Query: {
-		departments:(_,{id}) => departmentModel(id),
+		departments: ( ) => departmentModel( ),
+		department:(_,{id}) => departmentModel(id),
 		eBooks: async(_, { departmentId }) =>  eBooksModel(departmentId),
 		eBook: (_, { id }) => eBookModel(id)
 	},
