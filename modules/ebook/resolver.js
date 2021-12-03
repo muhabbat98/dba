@@ -19,7 +19,7 @@ const resolvers = {
 	Department: {
 		id: global =>  global.department_id,
 		name: global => global.department_name,
-		eBook: (_, { id }) => eBookModel(id)
+		eBooks:  eBooksModel(global.department_id),
 	},
 
 
